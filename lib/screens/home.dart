@@ -22,46 +22,35 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Wrap(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 1 / 3,
+              width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               alignment: Alignment.center,
-              color: Colors.red,
               child: SidebarXExampleApp(),
             ),
             Container(
-                width: MediaQuery.of(context).size.width * 1 / 3,
-                height: MediaQuery.of(context).size.height,
-                alignment: Alignment.center,
-                color: Colors.green,
-                child: Image.asset(
-                  'assets/images/kanagawa.png',
-                  fit: BoxFit.cover,
-                  width: 150,
-                  height: 150,
-                )),
-            Container(
               width: MediaQuery.of(context).size.width * 1 / 3,
               height: MediaQuery.of(context).size.height,
               alignment: Alignment.center,
-              child: Wrap(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1 / 2,
-                    child: card(),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 1 / 2,
-                    alignment: Alignment.bottomCenter,
-                    padding: EdgeInsets.all(20),
-                    child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        child: logoutButton(context, '/')),
-                  ),
-                ],
-              ),
+              color: Colors.white,
+              // child: Wrap(
+              //   children: [
+              //     Container(
+              //       width: MediaQuery.of(context).size.width,
+              //       height: MediaQuery.of(context).size.height * 1 / 2,
+              //       child: card(),
+              //     ),
+              //     Container(
+              //       width: MediaQuery.of(context).size.width,
+              //       height: MediaQuery.of(context).size.height * 1 / 2,
+              //       alignment: Alignment.bottomCenter,
+              //       padding: EdgeInsets.all(20),
+              //       child: Container(
+              //           width: MediaQuery.of(context).size.width,
+              //           height: 50,
+              //           child: logoutButton(context, '/')),
+              //     ),
+              //   ],
+              // ),
             ),
           ],
         ),
