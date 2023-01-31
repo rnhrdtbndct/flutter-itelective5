@@ -306,14 +306,17 @@ class _MyWidgetState extends State<LoginScreen> {
                                     padding: EdgeInsets.symmetric(),
                                     child: Row(children: [
                                       socMedButton(
-                                          FaIcon(FontAwesomeIcons.facebook),
-                                          Color(0xff3B5998)),
+                                          FaIcon(FontAwesomeIcons.facebook,),
+                                          Color(0xff3B5998),
+                                          '/home'),          
                                       socMedButton(
                                           FaIcon(FontAwesomeIcons.twitter),
-                                          Color(0xff00acee)),
+                                          Color(0xff00acee), 
+                                          '/home'),
                                       socMedButton(
                                           FaIcon(FontAwesomeIcons.google),
-                                          Color(0xff3cba54)),
+                                          Color(0xff3cba54),
+                                          '/home'),
                                     ]),
                                   )
                                 ],
@@ -587,13 +590,16 @@ class _MyWidgetState extends State<LoginScreen> {
                                   child: Row(children: [
                                     socMedButton(
                                         FaIcon(FontAwesomeIcons.facebook),
-                                        Color(0xff3B5998)),
+                                        Color(0xff3B5998),
+                                        "/home"),
                                     socMedButton(
                                         FaIcon(FontAwesomeIcons.twitter),
-                                        Color(0xff00acee)),
+                                        Color(0xff00acee),
+                                        "/home"),
                                     socMedButton(
                                         FaIcon(FontAwesomeIcons.google),
-                                        Color(0xff3cba54)),
+                                        Color(0xff3cba54),
+                                        "/home"),
                                   ]),
                                 )
                               ],
@@ -693,9 +699,11 @@ class _MyWidgetState extends State<LoginScreen> {
         ));
   }
 
-  ElevatedButton socMedButton(FaIcon logo, Color color) {
+  ElevatedButton socMedButton(FaIcon logo, Color color, String route) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamedAndRemoveUntil(context, route, ModalRoute.withName('/'));
+      },
       style: ElevatedButton.styleFrom(
           shape: CircleBorder(),
           padding: EdgeInsets.all(15),

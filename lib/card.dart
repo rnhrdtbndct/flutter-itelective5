@@ -46,72 +46,71 @@ class card extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15))),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    child: Wrap(
                       children: [
-                        Wrap(
-                          children: [
-                            Container(
-                              width: 200,
-                              padding: EdgeInsets.only(
-                                left: 50,
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          color: Colors.green,
+                          height: 25,
+                          child: Wrap(
+                            direction: Axis.vertical,
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                child: Icon(Icons.notifications,
+                                    color: Color(0xff8B8FC9)),
                               ),
-                              alignment: Alignment.topLeft,
-                              child: Icon(Icons.notifications,
-                                  color: Color(0xff8B8FC9)),
-                            ),
-                            Container(
-                              width: 200,
-                              padding: EdgeInsets.only(
-                                right: 50,
+                              Container(
+                                color: Colors.green,
+                                alignment: Alignment.center,
+                                child: Icon(Icons.mail, color: Color(0xff8B8FC9)),
                               ),
-                              alignment: Alignment.topRight,
-                              child: Icon(Icons.mail, color: Color(0xff8B8FC9)),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                        Wrap(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * .20,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Color(0xff8B8FC9)),
-                                image: DecorationImage(
-                                    image: AssetImage("assets/images/rein.jpg"),
-                                    fit: BoxFit.contain),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.only(top: 20),
-                              child: Text(
-                                "Reinhardt Benedicto",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  fontFamily: 'MPlus',
-                                  fontWeight: FontWeight.w300,
+                        Container(
+                          child: Wrap(
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height * .20,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Color(0xff8B8FC9)),
+                                  image: DecorationImage(
+                                      image: AssetImage("assets/images/rein.jpg"),
+                                      fit: BoxFit.contain),
                                 ),
                               ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width,
-                              child: Text(
-                                "@rnhrdtbndct",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Color(0xff8B8FC9),
-                                  fontFamily: 'MPlus',
-                                  fontWeight: FontWeight.w500,
+                              Container(
+                                alignment: Alignment.center,
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.only(top: 20),
+                                child: Text(
+                                  "Reinhardt Benedicto",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.white,
+                                    fontFamily: 'MPlus',
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                              Container(
+                                alignment: Alignment.center,
+                                width: MediaQuery.of(context).size.width,
+                                child: Text(
+                                  "@rnhrdtbndct",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xff8B8FC9),
+                                    fontFamily: 'MPlus',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
