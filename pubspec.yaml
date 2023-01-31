@@ -70,6 +70,8 @@ flutter:
     - assets/images/underwater1.jpg
     - assets/images/beach1.jpg
     - assets/images/beach2.jpg
+    - assets/images/phoenix.png
+    - assets/images/kanagawa.png
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

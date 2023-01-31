@@ -75,7 +75,7 @@ class _MyWidgetState extends State<LoginScreen> {
                 ),
                 Container(
                     padding: const EdgeInsets.all(30),
-                    alignment: Alignment.bottomRight,
+                    alignment: Alignment.bottomCenter,
                     child: buildIndicator())
               ],
             ),
@@ -726,7 +726,7 @@ class _MyWidgetState extends State<LoginScreen> {
 
   Widget buildIndicator() => AnimatedSmoothIndicator(
         effect: const ExpandingDotsEffect(
-            dotWidth: 5, dotHeight: 5, activeDotColor: Colors.blue),
+            dotWidth: 5, dotHeight: 5, activeDotColor: Colors.blue,),
         activeIndex: activeIndex,
         count: images.length,
       );

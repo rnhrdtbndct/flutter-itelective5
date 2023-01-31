@@ -13,17 +13,17 @@ class card extends StatelessWidget {
       body: Center(
         child: Stack(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: ColorFiltered(
-                  colorFilter: const ColorFilter.mode(
-                    Color(0xff41446A),
-                    BlendMode.color,
-                  ),
-                  child: Image.asset('assets/images/everest.jpg',
-                      fit: BoxFit.cover)),
-            ),
+            // Container(
+            //   width: MediaQuery.of(context).size.width,
+            //   height: MediaQuery.of(context).size.height,
+            //   child: ColorFiltered(
+            //       colorFilter: const ColorFilter.mode(
+            //         Color(0xff41446A),
+            //         BlendMode.color,
+            //       ),
+            //       child: Image.asset('assets/images/everest.jpg',
+            //           fit: BoxFit.cover)),
+            // ),
             Container(
               alignment: Alignment.center,
               child: Column(
