@@ -1,8 +1,8 @@
-import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:itelective5/card.dart';
-import 'package:itelective5/navbar.dart';
+import 'package:itelective5/elements/card.dart';
+import 'package:itelective5/elements/navbar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,49 +14,90 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(body:
+        LayoutBuilder(builder: (BuildContext, BoxConstraints constraints) {
+      if (constraints.maxWidth > 1100) {
+        return webView(context);
+      } else {
+        return mobileView(context);
+      }
+    }));
+  }
+}
+
+Scaffold webView(BuildContext context) {
+  return Scaffold(
+    body: Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Wrap(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 1 / 3,
+            height: MediaQuery.of(context).size.height,
+            alignment: Alignment.centerLeft,
+            color: Color(0xFFF3C374),
+            child: NavBar(index: 0),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 1 / 3,
+            height: MediaQuery.of(context).size.height,
+            alignment: Alignment.center,
+            color: Color(0xFFF3C374),
+            child: Image.asset("assets/images/kanagawa.png"),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 1 / 3,
+            height: MediaQuery.of(context).size.height,
+            alignment: Alignment.center,
+            color: Color(0xFFF3C374),
+            child: userDrawer(context),
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+Scaffold mobileView(BuildContext context) {
+  return Scaffold(
+      drawer: NavBar(index: 0),
+      endDrawer: userDrawer(context),
+      appBar: AppBar(backgroundColor: Color(0xFFE35333), actions: [
+        Builder(
+            builder: (context) => IconButton(
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+                icon: Icon(FontAwesomeIcons.user),
+                padding: EdgeInsets.only(right: 10)))
+      ]),
       body: Container(
-        alignment: Alignment.center,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Wrap(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              alignment: Alignment.center,
-              child: SidebarXExampleApp(),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 1 / 3,
-              height: MediaQuery.of(context).size.height,
-              alignment: Alignment.center,
-              color: Colors.white,
-              // child: Wrap(
-              //   children: [
-              //     Container(
-              //       width: MediaQuery.of(context).size.width,
-              //       height: MediaQuery.of(context).size.height * 1 / 2,
-              //       child: card(),
-              //     ),
-              //     Container(
-              //       width: MediaQuery.of(context).size.width,
-              //       height: MediaQuery.of(context).size.height * 1 / 2,
-              //       alignment: Alignment.bottomCenter,
-              //       padding: EdgeInsets.all(20),
-              //       child: Container(
-              //           width: MediaQuery.of(context).size.width,
-              //           height: 50,
-              //           child: logoutButton(context, '/')),
-              //     ),
-              //   ],
-              // ),
-            ),
-          ],
+        alignment: Alignment.center,
+        color: Color(0xFFF3C374),
+        child: Image.asset("assets/images/kanagawa.png"),
+      ));
+}
+
+Container userDrawer(BuildContext context) {
+  return Container(
+    width: 365,
+    height: MediaQuery.of(context).size.height,
+    alignment: Alignment.center,
+    color: Color(0xFFF3C374),
+    child: Wrap(
+      children: [
+        Container(
+            width: 365,
+            height: MediaQuery.of(context).size.height * 3 / 4,
+            child: card()),
+        Center(
+          child: Container(
+              width: 350, height: 50, child: logoutButton(context, "/")),
         ),
-      ),
-    );
-  }
+      ],
+    ),
+  );
 }
 
 ElevatedButton logoutButton(BuildContext context, String route) {

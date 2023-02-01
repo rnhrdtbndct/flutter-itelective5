@@ -26,13 +26,14 @@ class card extends StatelessWidget {
             // ),
             Container(
               alignment: Alignment.center,
+              color: Color(0xFFF3C374),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    width: 400,
-                    height: 400,
+                    width: 360,
+                    height: 350,
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.topCenter,
@@ -46,24 +47,27 @@ class card extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15))),
-                    child: Wrap(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.green,
                           height: 25,
                           child: Wrap(
-                            direction: Axis.vertical,
                             children: [
                               Container(
-                                alignment: Alignment.center,
+                                width: 180,
+                                padding: EdgeInsets.only(left: 30),
+                                alignment: Alignment.centerLeft,
                                 child: Icon(Icons.notifications,
                                     color: Color(0xff8B8FC9)),
                               ),
                               Container(
-                                color: Colors.green,
-                                alignment: Alignment.center,
-                                child: Icon(Icons.mail, color: Color(0xff8B8FC9)),
+                                width: 180,
+                                padding: EdgeInsets.only(right: 30),
+                                alignment: Alignment.centerRight,
+                                child:
+                                    Icon(Icons.mail, color: Color(0xff8B8FC9)),
                               ),
                             ],
                           ),
@@ -71,42 +75,57 @@ class card extends StatelessWidget {
                         Container(
                           child: Wrap(
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height * .20,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: Color(0xff8B8FC9)),
-                                  image: DecorationImage(
-                                      image: AssetImage("assets/images/rein.jpg"),
-                                      fit: BoxFit.contain),
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.only(top: 20),
-                                child: Text(
-                                  "Reinhardt Benedicto",
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: Colors.white,
-                                    fontFamily: 'MPlus',
-                                    fontWeight: FontWeight.w300,
+                              Center(
+                                child: Container(
+                                  width: 175,
+                                  height: 175,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border:
+                                        Border.all(color: Color(0xff8B8FC9)),
+                                    image: DecorationImage(
+                                      image:
+                                          AssetImage("assets/images/rein.jpg"),
+                                      fit: BoxFit.contain,
+                                    ),
                                   ),
                                 ),
                               ),
                               Container(
-                                alignment: Alignment.center,
-                                width: MediaQuery.of(context).size.width,
-                                child: Text(
-                                  "@rnhrdtbndct",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    color: Color(0xff8B8FC9),
-                                    fontFamily: 'MPlus',
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                width: 360,
+                                height: 75,
+                                padding: EdgeInsets.only(top: 20),
+                                child: Wrap(
+                                  children: [
+                                    Container(
+                                      width: 360,
+                                      height: 50,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Reinhardt Benedicto",
+                                        style: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.white,
+                                          fontFamily: 'MPlus',
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 360,
+                                      height: 25,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "@rnhrdtbndct",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Color(0xff8B8FC9),
+                                          fontFamily: 'MPlus',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
@@ -116,7 +135,7 @@ class card extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 400,
+                    width: 360,
                     height: 150,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -131,7 +150,7 @@ class card extends StatelessWidget {
                           children: [
                             Container(
                               child: FractionalTranslation(
-                                translation: Offset(5.5, -0.5),
+                                translation: Offset(5, -0.5),
                                 child: FloatingActionButton(
                                   onPressed: () {
                                     // Add your onPressed code here!
@@ -143,7 +162,7 @@ class card extends StatelessWidget {
                             ),
                             Container(
                               alignment: Alignment.center,
-                              width: 385 / 3,
+                              width: 358 / 3,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -173,6 +192,7 @@ class card extends StatelessWidget {
                           ],
                         ),
                         Container(
+                          width: 1,
                           alignment: Alignment.center,
                           child: SizedBox(
                             child: Text("|",
@@ -186,7 +206,7 @@ class card extends StatelessWidget {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          width: 385 / 3,
+                          width: 358 / 3,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -214,6 +234,7 @@ class card extends StatelessWidget {
                           ),
                         ),
                         Container(
+                          width: 1,
                           alignment: Alignment.center,
                           child: SizedBox(
                             child: Text("|",
@@ -227,7 +248,7 @@ class card extends StatelessWidget {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          width: 385 / 3,
+                          width: 358 / 3,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,

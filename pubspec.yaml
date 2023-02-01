@@ -73,6 +73,7 @@ flutter:
     - assets/images/beach2.jpg
     - assets/images/phoenix.png
     - assets/images/kanagawa.png
+    - assets/images/flutter.png
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

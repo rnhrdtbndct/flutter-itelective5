@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
+void main() {
+  runApp(SidebarXExampleApp());
+}
+
 class SidebarXExampleApp extends StatelessWidget {
   SidebarXExampleApp({Key? key}) : super(key: key);
 
@@ -10,8 +14,10 @@ class SidebarXExampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'SidebarX Example',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primaryColor: primaryColor,
         canvasColor: canvasColor,
         scaffoldBackgroundColor: scaffoldBackgroundColor,
         textTheme: const TextTheme(
@@ -29,7 +35,8 @@ class SidebarXExampleApp extends StatelessWidget {
             key: _key,
             appBar: isSmallScreen
                 ? AppBar(
-                    backgroundColor: Colors.white,
+                    backgroundColor: canvasColor,
+                    title: Text(_getTitleByIndex(_controller.selectedIndex)),
                     leading: IconButton(
                       onPressed: () {
                         // if (!Platform.isAndroid && !Platform.isIOS) {
@@ -37,12 +44,11 @@ class SidebarXExampleApp extends StatelessWidget {
                         // }
                         _key.currentState?.openDrawer();
                       },
-                      icon: const Icon(Icons.menu, color: Colors.black,),
+                      icon: const Icon(Icons.menu),
                     ),
                   )
                 : null,
             drawer: ExampleSidebarX(controller: _controller),
-            
             body: Row(
               children: [
                 if (!isSmallScreen) ExampleSidebarX(controller: _controller),
@@ -126,7 +132,7 @@ class ExampleSidebarX extends StatelessWidget {
           height: 100,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Image.asset('assets/images/kanagawa.png'),
+            child: Image.asset('assets/images/avatar.png'),
           ),
         );
       },
@@ -134,22 +140,25 @@ class ExampleSidebarX extends StatelessWidget {
         SidebarXItem(
           icon: Icons.home,
           label: 'Home',
+          onTap: () {
+            debugPrint('Home');
+          },
         ),
         const SidebarXItem(
-          icon: Icons.cases,
-          label: 'Projects',
+          icon: Icons.search,
+          label: 'Search',
         ),
         const SidebarXItem(
-          icon: Icons.report,
-          label: 'Report',
+          icon: Icons.people,
+          label: 'People',
         ),
         const SidebarXItem(
-          icon: Icons.settings,
-          label: 'Settings',
+          icon: Icons.favorite,
+          label: 'Favorites',
         ),
         const SidebarXItem(
-          icon: Icons.info,
-          label: 'About Us',
+          iconWidget: FlutterLogo(size: 20),
+          label: 'Flutter',
         ),
       ],
     );
@@ -173,11 +182,18 @@ class _ScreensExample extends StatelessWidget {
         final pageTitle = _getTitleByIndex(controller.selectedIndex);
         switch (controller.selectedIndex) {
           case 0:
-            return Container(
-              child: Image.asset('assets/images/kanagawa.png',
-              fit: BoxFit.cover,
-              width: 150,
-              height: 150,)
+            return ListView.builder(
+              padding: const EdgeInsets.only(top: 10),
+              itemBuilder: (context, index) => Container(
+                height: 100,
+                width: double.infinity,
+                margin: const EdgeInsets.only(bottom: 10, right: 10, left: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Theme.of(context).canvasColor,
+                  boxShadow: const [BoxShadow()],
+                ),
+              ),
             );
           default:
             return Text(
@@ -195,20 +211,26 @@ String _getTitleByIndex(int index) {
     case 0:
       return 'Home';
     case 1:
-      return 'Projects';
+      return 'Search';
     case 2:
-      return 'Report';
+      return 'People';
     case 3:
-      return 'Settings';
+      return 'Favorites';
     case 4:
-      return 'About Us';
+      return 'Custom iconWidget';
+    case 5:
+      return 'Profile';
+    case 6:
+      return 'Settings';
     default:
       return 'Not found page';
   }
 }
-const canvasColor = Color(0xFF2E3E5E);
-const scaffoldBackgroundColor = Colors.white;
-const accentCanvasColor = Color(0xFFF3C374);
+
+const primaryColor = Color(0xFF685BFF);
+const canvasColor = Color(0xFF2E2E48);
+const scaffoldBackgroundColor = Color(0xFF464667);
+const accentCanvasColor = Color(0xFF3E3E61);
 const white = Colors.white;
 final actionColor = const Color(0xFF5F5FA7).withOpacity(0.6);
-final divider = Divider(color: Colors.white, height: 1);
+final divider = Divider(color: white.withOpacity(0.3), height: 1);

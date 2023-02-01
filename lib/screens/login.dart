@@ -28,7 +28,7 @@ class _MyWidgetState extends State<LoginScreen> {
       if (constraints.maxWidth >= 1000 && constraints.maxHeight >= 600) {
         return webView(context);
       } else if (constraints.maxWidth < 1000 &&
-          constraints.maxWidth > 380 &&
+          constraints.maxWidth > 360 &&
           constraints.maxHeight >= 600) {
         return mobileView(context);
       } else {
@@ -86,7 +86,7 @@ class _MyWidgetState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-                width: 380,
+                width: 360,
                 height: 600,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -108,7 +108,7 @@ class _MyWidgetState extends State<LoginScreen> {
                             Container(
                               alignment: Alignment.bottomLeft,
                               padding: EdgeInsets.only(top: 30, left: 5),
-                              width: 140,
+                              width: 130,
                               height: 50,
                               child: Text("Photoma",
                                   style: GoogleFonts.roboto(
@@ -122,7 +122,7 @@ class _MyWidgetState extends State<LoginScreen> {
                         Container(
                           alignment: Alignment.centerRight,
                           padding: EdgeInsets.only(top: 30, right: 30),
-                          width: 190,
+                          width: 180,
                           height: 50,
                           child: Text(
                             "Home",
@@ -137,7 +137,7 @@ class _MyWidgetState extends State<LoginScreen> {
                     ),
                     Container(
                       alignment: Alignment.topCenter,
-                      width: 500,
+                      width: 360,
                       height: 500,
                       child: Padding(
                         padding: EdgeInsets.only(left: 25, top: 50, right: 25),
@@ -181,7 +181,7 @@ class _MyWidgetState extends State<LoginScreen> {
                             ),
                             Container(
                               alignment: Alignment.centerLeft,
-                              width: MediaQuery.of(context).size.width,
+                              width: 360,
                               padding: EdgeInsets.only(
                                 top: 5,
                               ),
@@ -217,7 +217,7 @@ class _MyWidgetState extends State<LoginScreen> {
                               ),
                             ),
                             Container(
-                              width: MediaQuery.of(context).size.width,
+                              width: 360,
                               padding: EdgeInsets.only(top: 5),
                               child: TextField(
                                 obscureText: true,
@@ -239,13 +239,13 @@ class _MyWidgetState extends State<LoginScreen> {
                                 child: Row(
                                   children: [
                                     Container(
-                                        width: 165,
+                                        width: 155,
                                         height: 55,
                                         padding: EdgeInsets.only(
                                             top: 10, bottom: 10, right: 10),
                                         child: registerButton()),
                                     Container(
-                                        width: 165,
+                                        width: 155,
                                         height: 55,
                                         padding: EdgeInsets.only(
                                             top: 10, bottom: 10, left: 10),
@@ -259,7 +259,7 @@ class _MyWidgetState extends State<LoginScreen> {
                                 child: Row(
                                   children: [
                                     Container(
-                                      width: 165,
+                                      width: 155,
                                       height: 55,
                                       alignment: Alignment.centerLeft,
                                       child: Row(
@@ -282,7 +282,7 @@ class _MyWidgetState extends State<LoginScreen> {
                                       ),
                                     ),
                                     Container(
-                                        width: 165,
+                                        width: 155,
                                         height: 55,
                                         alignment: Alignment.centerRight,
                                         child: Text(
@@ -306,12 +306,14 @@ class _MyWidgetState extends State<LoginScreen> {
                                     padding: EdgeInsets.symmetric(),
                                     child: Row(children: [
                                       socMedButton(
-                                          FaIcon(FontAwesomeIcons.facebook,),
+                                          FaIcon(
+                                            FontAwesomeIcons.facebook,
+                                          ),
                                           Color(0xff3B5998),
-                                          '/home'),          
+                                          '/home'),
                                       socMedButton(
                                           FaIcon(FontAwesomeIcons.twitter),
-                                          Color(0xff00acee), 
+                                          Color(0xff00acee),
                                           '/home'),
                                       socMedButton(
                                           FaIcon(FontAwesomeIcons.google),
@@ -331,7 +333,7 @@ class _MyWidgetState extends State<LoginScreen> {
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(left: 30),
-                          width: 190,
+                          width: 180,
                           height: 50,
                           child: Text(
                             "Impress",
@@ -341,7 +343,7 @@ class _MyWidgetState extends State<LoginScreen> {
                         Container(
                           alignment: Alignment.centerRight,
                           padding: EdgeInsets.only(right: 30),
-                          width: 190,
+                          width: 180,
                           height: 50,
                           child: Text(
                             "EN",
@@ -702,7 +704,8 @@ class _MyWidgetState extends State<LoginScreen> {
   ElevatedButton socMedButton(FaIcon logo, Color color, String route) {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushNamedAndRemoveUntil(context, route, ModalRoute.withName('/'));
+        Navigator.pushNamedAndRemoveUntil(
+            context, route, ModalRoute.withName('/'));
       },
       style: ElevatedButton.styleFrom(
           shape: CircleBorder(),
@@ -734,7 +737,10 @@ class _MyWidgetState extends State<LoginScreen> {
 
   Widget buildIndicator() => AnimatedSmoothIndicator(
         effect: const ExpandingDotsEffect(
-            dotWidth: 5, dotHeight: 5, activeDotColor: Colors.blue,),
+          dotWidth: 5,
+          dotHeight: 5,
+          activeDotColor: Colors.blue,
+        ),
         activeIndex: activeIndex,
         count: images.length,
       );
