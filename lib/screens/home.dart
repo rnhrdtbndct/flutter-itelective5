@@ -44,7 +44,7 @@ Scaffold webView(BuildContext context) {
             height: MediaQuery.of(context).size.height,
             alignment: Alignment.center,
             color: Color(0xFFF3C374),
-            child: Image.asset("assets/images/kanagawa.png"),
+            child: Image.asset("assets/images/kanagawa.png", fit: BoxFit.cover, width: 250, height: 250),
           ),
           Container(
             width: MediaQuery.of(context).size.width * 1 / 3,
@@ -75,7 +75,7 @@ Scaffold mobileView(BuildContext context) {
         height: MediaQuery.of(context).size.height,
         alignment: Alignment.center,
         color: Color(0xFFF3C374),
-        child: Image.asset("assets/images/kanagawa.png"),
+        child: Image.asset("assets/images/kanagawa.png",  fit: BoxFit.cover, width: 250, height: 250),
       ));
 }
 
@@ -109,7 +109,7 @@ ElevatedButton logoutButton(BuildContext context, String route) {
     style: ElevatedButton.styleFrom(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-        backgroundColor: Color(0xff29B1CC)),
+        backgroundColor: Color(0xFF2E3E5E)),
     child: Text(
       "Logout",
       style: GoogleFonts.roboto(

@@ -23,7 +23,8 @@ class _MyWidgetState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LayoutBuilder(
+    return Scaffold(
+      body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       if (constraints.maxWidth >= 1000 && constraints.maxHeight >= 600) {
         return webView(context);
@@ -243,7 +244,7 @@ class _MyWidgetState extends State<LoginScreen> {
                                         height: 55,
                                         padding: EdgeInsets.only(
                                             top: 10, bottom: 10, right: 10),
-                                        child: registerButton()),
+                                        child: registerButton("/signup")),
                                     Container(
                                         width: 155,
                                         height: 55,
@@ -265,6 +266,7 @@ class _MyWidgetState extends State<LoginScreen> {
                                       child: Row(
                                         children: [
                                           Checkbox(
+                                            activeColor: Color(0xFF2E3E5E),
                                             value: true,
                                             onChanged: (logo) {
                                               setState(() {});
@@ -365,7 +367,7 @@ class _MyWidgetState extends State<LoginScreen> {
         body: Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      color: Color(0xffEDF2F2),
+      color: Color(0xFF2E3E5E),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -530,7 +532,7 @@ class _MyWidgetState extends State<LoginScreen> {
                                       height: 55,
                                       padding: EdgeInsets.only(
                                           top: 10, bottom: 10, right: 10),
-                                      child: registerButton()),
+                                      child: registerButton("/signup")),
                                   Container(
                                       width: 175,
                                       height: 55,
@@ -549,23 +551,24 @@ class _MyWidgetState extends State<LoginScreen> {
                                   height: 55,
                                   alignment: Alignment.centerLeft,
                                   child: Row(
-                                    children: [
-                                      Checkbox(
-                                        value: true,
-                                        onChanged: (logo) {
-                                          setState(() {});
-                                        },
+                                        children: [
+                                          Checkbox(
+                                            activeColor: Color(0xFF2E3E5E),
+                                            value: true,
+                                            onChanged: (logo) {
+                                              setState(() {});
+                                            },
+                                          ),
+                                          Container(
+                                              child: Text(
+                                            "Remember Me",
+                                            style: GoogleFonts.roboto(
+                                                textStyle: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black)),
+                                          )),
+                                        ],
                                       ),
-                                      Container(
-                                          child: Text(
-                                        "Remember Me",
-                                        style: GoogleFonts.roboto(
-                                            textStyle: TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.black)),
-                                      )),
-                                    ],
-                                  ),
                                 ),
                                 Container(
                                     width: 175,
@@ -671,7 +674,7 @@ class _MyWidgetState extends State<LoginScreen> {
       style: ElevatedButton.styleFrom(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-          backgroundColor: Color(0xff29B1CC)),
+          backgroundColor: Color(0xFF2E3E5E)),
       child: Text(
         "Login",
         style: GoogleFonts.roboto(
@@ -683,13 +686,16 @@ class _MyWidgetState extends State<LoginScreen> {
     );
   }
 
-  ElevatedButton registerButton() {
+  ElevatedButton registerButton(String route) {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(
+            context, route, ModalRoute.withName('/'));
+        },
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
-                side: const BorderSide(color: Color(0xff29B1CC))),
+                side: const BorderSide(color: Color(0xFF2E3E5E))),
             backgroundColor: Colors.white),
         child: Text(
           "Register",
@@ -697,7 +703,7 @@ class _MyWidgetState extends State<LoginScreen> {
               textStyle: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xff29B1CC))),
+                  color: Color(0xFF2E3E5E))),
         ));
   }
 

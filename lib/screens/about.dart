@@ -1,5 +1,6 @@
 import 'dart:js';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:itelective5/elements/card.dart';
@@ -129,7 +130,7 @@ Scaffold mobileView(BuildContext context) {
                 ),
               ),
             ),
-            Container(
+            SingleChildScrollView(
               child: Column(
                 children: [
                   inputContainer(context, "1. The setup experience",
@@ -182,13 +183,14 @@ Container input(BuildContext context, String question, String answer) {
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF2E3E5E))))),
         Flexible(
-            child: Text(
+            child: AutoSizeText(
           answer,
+          maxLines: 7,
+          minFontSize: 10,
+          maxFontSize: 14,
           textAlign: TextAlign.justify,
           style: GoogleFonts.roboto(
               textStyle: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
                   color: Color(0xFFFAF3DC))),
         )),
       ],
@@ -226,7 +228,7 @@ ElevatedButton logoutButton(BuildContext context, String route) {
     style: ElevatedButton.styleFrom(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-        backgroundColor: Color(0xff29B1CC)),
+        backgroundColor: Color(0xFF2E3E5E)),
     child: Text(
       "Logout",
       style: GoogleFonts.roboto(

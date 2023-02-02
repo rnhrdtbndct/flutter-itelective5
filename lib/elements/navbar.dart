@@ -60,7 +60,7 @@ class NavBar extends StatelessWidget {
       footerDivider: divider,
       headerBuilder: (context, extended) {
         return SizedBox(
-          height: 175,
+          height: 100,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Image.asset('assets/images/kanagawa.png'),

@@ -13,43 +13,47 @@ class _MyWidgetState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          width: 360,
-          height: 600,
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-          boxShadow:[
-            BoxShadow(
-              color: Colors.grey.shade400, 
-              blurRadius: 10,
-              ),
-          ],
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-          child: Center(
-            child: Wrap(
-              children: [
-                title("Firstname"),
-                inputBox(context, "text"),
-                title("Lastname"),
-                inputBox(context, "text"),
-                title("Email Address"),
-                inputBox(context, "text"),
-                title("Username"),
-                inputBox(context, "text"),
-                title("Password"),
-                inputBox(context, "password"),
-                title("Confirm Password"),
-                inputBox(context, "password"),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 50,
-                  margin: EdgeInsets.only(top: 30),
-                  padding: EdgeInsets.all(5),
-                  child: registerButton(),
+      body: Container(
+        color: Color(0xFFE35333),
+        child: Center(
+          child: Container(
+            width: 360,
+            height: 700,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+            boxShadow:[
+              BoxShadow(
+                color: Colors.grey.shade400, 
+                blurRadius: 10,
                 ),
-              ],
+            ],
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: Center(
+              child: Wrap(
+                children: [
+                  Center(child: Image.asset("assets/images/kanagawa.png", fit: BoxFit.cover, width: 100, height: 100)),
+                  title("Firstname"),
+                  inputBox(context, "text"),
+                  title("Lastname"),
+                  inputBox(context, "text"),
+                  title("Email Address"),
+                  inputBox(context, "text"),
+                  title("Username"),
+                  inputBox(context, "text"),
+                  title("Password"),
+                  inputBox(context, "password"),
+                  title("Confirm Password"),
+                  inputBox(context, "password"),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    margin: EdgeInsets.only(top: 30),
+                    padding: EdgeInsets.all(5),
+                    child: registerButton("/"),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -128,14 +132,17 @@ class _MyWidgetState extends State<SignUpScreen> {
               );
   }
 
-  ElevatedButton registerButton() {
+  ElevatedButton registerButton(String route) {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(
+            context, route, ModalRoute.withName('/'));
+        },
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
                 side: const BorderSide(color: Colors.black87)),
-            backgroundColor: Color(0xff29B1CC)),
+            backgroundColor: Color(0xFF2E3E5E)),
         child: Text(
           "Register",
           style: GoogleFonts.roboto(
