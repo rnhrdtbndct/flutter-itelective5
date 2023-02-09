@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:itelective5/screens/home.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class NavBar extends StatelessWidget {

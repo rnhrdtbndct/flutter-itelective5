@@ -86,17 +86,21 @@ class card extends StatelessWidget {
                               padding: EdgeInsets.only(top: 20),
                               child: Wrap(
                                 children: [
-                                  Container(
-                                    width: 360,
-                                    height: 50,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Reinhardt Benedicto",
-                                      style: TextStyle(
-                                        fontSize: 25,
-                                        color: Colors.white,
-                                        fontFamily: 'MPlus',
-                                        fontWeight: FontWeight.w300,
+                                  Center(
+                                    child: Container(
+                                      width: 360,
+                                      height: 50,
+                                      child: Center(
+                                        child: Text(
+                                          "Reinhardt Benedicto",
+                                          style: TextStyle(
+                                            fontSize: 25,
+                                            color: Colors.white,
+                                            fontFamily: 'MPlus',
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ),
                                     ),
                                   ),
