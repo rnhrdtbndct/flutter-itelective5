@@ -1,8 +1,9 @@
+import 'dart:convert';
 import 'dart:js';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import 'package:itelective5/elements/card.dart';
 import 'package:itelective5/elements/navbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,20 +17,45 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  var userURL = Uri.parse('https://randomuser.me/api/');
+  var userImageURL;
+  var userThumbnail;
+  var userFullName;
+  var username;
+
   @override
+  void initState(){
+    super.initState();
+
+     getData().then((value) {
+      var data = jsonDecode(value.body);
+      setState(() {
+        userImageURL = data['results'][0]['picture']['medium'];
+        userThumbnail = data['results'][0]['picture']['thumbnail'];
+        userFullName = data['results'][0]['name']['first'] + ' ' + data['results'][0]['name']['last'];
+        username = data['results'][0]['login']['username'];
+      });
+    });
+  }
+
+  Future<Response> getData() async{
+    Response response = await get(userURL);
+    return response;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(body:
         LayoutBuilder(builder: (BuildContext, BoxConstraints constraints) {
       if (constraints.maxWidth > 1100) {
-        return webView(context);
+        return webView(context, userImageURL, userThumbnail, userFullName, username);
       } else {
-        return mobileView(context);
+        return mobileView(context, userImageURL, userThumbnail, userFullName, username);
       }
     }));
   }
 }
 
-Scaffold webView(BuildContext context) {
+Scaffold webView(BuildContext context, String userImageURL, String userThumbnail, String userFullName, String username) {
   return Scaffold(
     body: Container(
       width: MediaQuery.of(context).size.width,
@@ -48,42 +74,45 @@ Scaffold webView(BuildContext context) {
             height: MediaQuery.of(context).size.height,
             alignment: Alignment.center,
             color: Color(0xFFF3C374),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Image.asset(
-                      'assets/images/flutter.png',
-                      fit: BoxFit.cover,
-                      width: 150,
-                      height: 150,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Image.asset(
+                        'assets/images/flutter.png',
+                        fit: BoxFit.cover,
+                        width: 150,
+                        height: 150,
+                      ),
                     ),
                   ),
-                ),
-                Column(
-                  children: [
-                    inputContainer(context, "1. The setup experience",
-                        "Setting up Flutter was incredibly easy and smooth. The process was straightforward, with clear instructions, guidance from my professor, and an intuitive setup wizard. The user-friendly interface made it simple to install the necessary tools and dependencies, and the whole process was completed in a short period of time."),
-                    inputContainer(
-                        context,
-                        "2. The building and running experience",
-                        "Building and running applications in Flutter is a delightful experience. The framework provides a rich set of tools and widgets that make creating beautiful and functional apps easy. The hot reload feature is beneficial, allowing developers to see real-time changes and making the development process faster and more efficient."),
-                    inputContainer(
-                        context,
-                        "3. The highs and lows in your coding practice",
-                        "Coding in Flutter has its ups and downs, like any programming framework. Based on my experience, the highs of using the Flutter framework would be that it makes developing the frontend much easier; on the other hand, the lows would be that since it is a new environment, you are expected to learn everything from scratch and work your way up."),
-                    inputContainer(
-                        context,
-                        "4. The first bug you got your legit frustration while coding",
-                        "I did not encounter any frustrating bugs so far. However, there was an experience that got me frustrated in Flutter, it was when I needed to push my code in GitHub, but an error appeared that I could not push it into the GitHub. I was frustrated because my time was also already constrained because the computer laboratory was already closing. I just turned off the computer immediately and get back to it on another day."),
-                    inputContainer(context, "5. The first eureka moment",
-                        "My first eureka moment in Flutter was after I created my first project because I was amazed by the rich set of tools and widgets that Flutter provides, which makes it easy to build complex user interfaces and animations. The framework's performance, with smooth animations and fast load times. These moments are what make Flutter such an enjoyable platform to code in, and are a testament to its power and versatility."),
-                  ],
-                ),
-              ],
+                  Column(
+                    children: [
+                      inputContainer(context, "1. The setup experience",
+                          "Setting up Flutter was incredibly easy and smooth. The process was straightforward, with clear instructions, guidance from my professor, and an intuitive setup wizard. The user-friendly interface made it simple to install the necessary tools and dependencies, and the whole process was completed in a short period of time."),
+                      inputContainer(
+                          context,
+                          "2. The building and running experience",
+                          "Building and running applications in Flutter is a delightful experience. The framework provides a rich set of tools and widgets that make creating beautiful and functional apps easy. The hot reload feature is beneficial, allowing developers to see real-time changes and making the development process faster and more efficient."),
+                      inputContainer(
+                          context,
+                          "3. The highs and lows in your coding practice",
+                          "Coding in Flutter has its ups and downs, like any programming framework. Based on my experience, the highs of using the Flutter framework would be that it makes developing the frontend much easier; on the other hand, the lows would be that since it is a new environment, you are expected to learn everything from scratch and work your way up."),
+                      inputContainer(
+                          context,
+                          "4. The first bug you got your legit frustration while coding",
+                          "I did not encounter any frustrating bugs so far. However, there was an experience that got me frustrated in Flutter, it was when I needed to push my code in GitHub, but an error appeared that I could not push it into the GitHub. I was frustrated because my time was also already constrained because the computer laboratory was already closing. I just turned off the computer immediately and get back to it on another day."),
+                      inputContainer(context, "5. The first eureka moment",
+                          "My first eureka moment in Flutter was after I created my first project because I was amazed by the rich set of tools and widgets that Flutter provides, which makes it easy to build complex user interfaces and animations. The framework's performance, with smooth animations and fast load times. These moments are what make Flutter such an enjoyable platform to code in, and are a testament to its power and versatility."),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           Container(
@@ -91,7 +120,7 @@ Scaffold webView(BuildContext context) {
             height: MediaQuery.of(context).size.height,
             alignment: Alignment.center,
             color: Color(0xFFF3C374),
-            child: userDrawer(context),
+            child: userDrawer(context, userImageURL, userThumbnail, userFullName, username),
           )
         ],
       ),
@@ -99,10 +128,10 @@ Scaffold webView(BuildContext context) {
   );
 }
 
-Scaffold mobileView(BuildContext context) {
+Scaffold mobileView(BuildContext context, String userImageURL, String userThumbnail, String userFullName, String username) {
   return Scaffold(
       drawer: NavBar(index: 4),
-      endDrawer: userDrawer(context),
+      endDrawer: userDrawer(context, userImageURL, userThumbnail, userFullName, username),
       appBar: AppBar(backgroundColor: Color(0xFFE35333), actions: [
         Builder(
             builder: (context) => IconButton(
@@ -207,7 +236,7 @@ Widget input(BuildContext context, String question, String answer) {
   );
 }
 
-Container userDrawer(BuildContext context) {
+Container userDrawer(BuildContext context, String userImageURL, String userThumbnail, String userFullName, String username) {
   return Container(
     width: 365,
     height: MediaQuery.of(context).size.height,
@@ -218,7 +247,7 @@ Container userDrawer(BuildContext context) {
         Container(
             width: 365,
             height: MediaQuery.of(context).size.height * 3 / 4,
-            child: card()),
+            child: card(userImageURL: userImageURL, userThumbnail: userThumbnail, userFullName: userFullName, username: username)),
         Center(
           child: Container(
               width: 350, height: 50, child: logoutButton(context, "/")),
