@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:itelective5/elements/card.dart';
+import 'package:itelective5/elements/mealCard.dart';
 import 'package:itelective5/screens/about.dart';
 import 'package:itelective5/screens/home.dart';
 import 'package:itelective5/screens/login.dart';
 import 'package:itelective5/screens/signup.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -15,13 +17,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, /*home: card()*/
-    routes: {
+    return MaterialApp(debugShowCheckedModeBanner: false, routes: {
       '/': (context) => LoginScreen(),
       '/signup': (context) => SignUpScreen(),
       '/home': (context) => HomeScreen(),
       '/about': (context) => AboutScreen(),
-    }
-    );
+    });
   }
 }

@@ -1,21 +1,23 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types, duplicate_ignore, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:http/http.dart';
 
 // ignore: camel_case_types
 class card extends StatelessWidget {
-  card({super.key, required this.userImageURL, required this.userThumbnail, required this.userFullName, required this.username});
+  const card(
+      {super.key,
+      required this.userImageURL,
+      required this.userThumbnail,
+      required this.userFullName,
+      required this.username,
+      required this.userCity});
 
   final String userImageURL;
   final String userThumbnail;
   final String userFullName;
   final String username;
+  final String userCity;
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -63,8 +65,7 @@ class card extends StatelessWidget {
                               width: 180,
                               padding: EdgeInsets.only(right: 30),
                               alignment: Alignment.centerRight,
-                              child:
-                                  Icon(Icons.mail, color: Color(0xff8B8FC9)),
+                              child: Icon(Icons.mail, color: Color(0xff8B8FC9)),
                             ),
                           ],
                         ),
@@ -78,11 +79,9 @@ class card extends StatelessWidget {
                                 height: 175,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  border:
-                                      Border.all(color: Color(0xff8B8FC9)),
+                                  border: Border.all(color: Color(0xff8B8FC9)),
                                   image: DecorationImage(
-                                    image:
-                                        NetworkImage(userImageURL),
+                                    image: NetworkImage(userImageURL),
                                     fit: BoxFit.contain,
                                   ),
                                 ),
@@ -90,8 +89,7 @@ class card extends StatelessWidget {
                             ),
                             Container(
                               width: 360,
-                              height: 75,
-                              padding: EdgeInsets.only(top: 20),
+                              height: 100,
                               child: Wrap(
                                 children: [
                                   Center(
@@ -117,12 +115,26 @@ class card extends StatelessWidget {
                                     height: 25,
                                     alignment: Alignment.center,
                                     child: Text(
-                                      username,
+                                      '@' + username,
                                       style: TextStyle(
                                         fontSize: 15,
                                         color: Color(0xff8B8FC9),
                                         fontFamily: 'MPlus',
                                         fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 360,
+                                    height: 25,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      userCity,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                        fontFamily: 'MPlus',
+                                        fontWeight: FontWeight.w300,
                                       ),
                                     ),
                                   ),

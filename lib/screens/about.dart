@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:js';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +6,6 @@ import 'package:http/http.dart';
 import 'package:itelective5/elements/card.dart';
 import 'package:itelective5/elements/navbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:itelective5/screens/signup.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -22,23 +20,27 @@ class _AboutScreenState extends State<AboutScreen> {
   var userThumbnail;
   var userFullName;
   var username;
+  var userCity;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
-     getData().then((value) {
+    getData().then((value) {
       var data = jsonDecode(value.body);
       setState(() {
         userImageURL = data['results'][0]['picture']['medium'];
         userThumbnail = data['results'][0]['picture']['thumbnail'];
-        userFullName = data['results'][0]['name']['first'] + ' ' + data['results'][0]['name']['last'];
+        userFullName = data['results'][0]['name']['first'] +
+            ' ' +
+            data['results'][0]['name']['last'];
         username = data['results'][0]['login']['username'];
+        userCity = data['results'][0]['location']['city'].toString();
       });
     });
   }
 
-  Future<Response> getData() async{
+  Future<Response> getData() async {
     Response response = await get(userURL);
     return response;
   }
@@ -47,15 +49,23 @@ class _AboutScreenState extends State<AboutScreen> {
     return Scaffold(body:
         LayoutBuilder(builder: (BuildContext, BoxConstraints constraints) {
       if (constraints.maxWidth > 1100) {
-        return webView(context, userImageURL, userThumbnail, userFullName, username);
+        return webView(context, userImageURL, userThumbnail, userFullName,
+            username, userCity);
       } else {
-        return mobileView(context, userImageURL, userThumbnail, userFullName, username);
+        return mobileView(context, userImageURL, userThumbnail, userFullName,
+            username, userCity);
       }
     }));
   }
 }
 
-Scaffold webView(BuildContext context, String userImageURL, String userThumbnail, String userFullName, String username) {
+Scaffold webView(
+    BuildContext context,
+    String userImageURL,
+    String userThumbnail,
+    String userFullName,
+    String username,
+    String userCity) {
   return Scaffold(
     body: Container(
       width: MediaQuery.of(context).size.width,
@@ -120,7 +130,8 @@ Scaffold webView(BuildContext context, String userImageURL, String userThumbnail
             height: MediaQuery.of(context).size.height,
             alignment: Alignment.center,
             color: Color(0xFFF3C374),
-            child: userDrawer(context, userImageURL, userThumbnail, userFullName, username),
+            child: userDrawer(context, userImageURL, userThumbnail,
+                userFullName, username, userCity),
           )
         ],
       ),
@@ -128,10 +139,17 @@ Scaffold webView(BuildContext context, String userImageURL, String userThumbnail
   );
 }
 
-Scaffold mobileView(BuildContext context, String userImageURL, String userThumbnail, String userFullName, String username) {
+Scaffold mobileView(
+    BuildContext context,
+    String userImageURL,
+    String userThumbnail,
+    String userFullName,
+    String username,
+    String userCity) {
   return Scaffold(
       drawer: NavBar(index: 4),
-      endDrawer: userDrawer(context, userImageURL, userThumbnail, userFullName, username),
+      endDrawer: userDrawer(context, userImageURL, userThumbnail, userFullName,
+          username, userCity),
       appBar: AppBar(backgroundColor: Color(0xFFE35333), actions: [
         Builder(
             builder: (context) => IconButton(
@@ -226,8 +244,7 @@ Widget input(BuildContext context, String question, String answer) {
               maxFontSize: 12,
               textAlign: TextAlign.justify,
               style: GoogleFonts.roboto(
-                  textStyle: TextStyle(
-                      color: Color(0xFFFAF3DC))),
+                  textStyle: TextStyle(color: Color(0xFFFAF3DC))),
             )),
           ),
         ],
@@ -236,7 +253,13 @@ Widget input(BuildContext context, String question, String answer) {
   );
 }
 
-Container userDrawer(BuildContext context, String userImageURL, String userThumbnail, String userFullName, String username) {
+Container userDrawer(
+    BuildContext context,
+    String userImageURL,
+    String userThumbnail,
+    String userFullName,
+    String username,
+    String userCity) {
   return Container(
     width: 365,
     height: MediaQuery.of(context).size.height,
@@ -247,7 +270,13 @@ Container userDrawer(BuildContext context, String userImageURL, String userThumb
         Container(
             width: 365,
             height: MediaQuery.of(context).size.height * 3 / 4,
-            child: card(userImageURL: userImageURL, userThumbnail: userThumbnail, userFullName: userFullName, username: username)),
+            child: card(
+              userImageURL: userImageURL,
+              userThumbnail: userThumbnail,
+              userFullName: userFullName,
+              username: username,
+              userCity: userCity,
+            )),
         Center(
           child: Container(
               width: 350, height: 50, child: logoutButton(context, "/")),
