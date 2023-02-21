@@ -3,7 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
-import 'package:itelective5/elements/card.dart';
+import 'package:itelective5/elements/userCard.dart';
 import 'package:itelective5/elements/navbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

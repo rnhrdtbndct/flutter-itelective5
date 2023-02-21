@@ -17,6 +17,7 @@ class mealCard extends StatelessWidget {
         height: 275,
         decoration: BoxDecoration(
           color: Color(0xff2f3361),
+          border: Border.all(width: 5, color: Color(0xFFE35333)),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Wrap(children: [

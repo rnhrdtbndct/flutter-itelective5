@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
-import 'package:itelective5/elements/card.dart';
+import 'package:itelective5/elements/userCard.dart';
 import 'package:itelective5/elements/mealCard.dart';
 import 'package:itelective5/elements/navbar.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       'https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian');
   var mealImageURL;
   var mealName;
-  List mealList = [];
+  var mealList;
 
   @override
   void initState() {
